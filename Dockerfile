@@ -11,7 +11,8 @@ RUN yum install -y epel-release yum-utils && yum install -y http://rpms.remirepo
 
 COPY doctrine.yaml /var/www/html/tusweb/config/packages/doctrine.yaml
 
-RUN cd /var/www/html/tusweb/bin && php console doctrine:database:create
+# RUN cd /var/www/html/tusweb/bin && php console doctrine:database:create
+# This step cannot be completed during build - it must be run in container after docker-compose up
 
 COPY local.conf /etc/httpd/conf.d
 # Missing log path causes httpd container to crash
