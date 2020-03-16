@@ -1,0 +1,41 @@
+version: '3.7'
+services:
+    tusweb:
+        container_name: tusweb
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - 80:80
+            - 443:443
+            - "22:22"
+        env_file: .env
+        volumes:
+            -   type: volume
+                source: webdata
+                target: /*
+            -   type: bind
+                source: /Users/leahcarr/Code/tustest/tusweb
+                target: /var/www/html/tusweb
+        depends_on:
+            - tusdb
+            - tusredis
+    tusredis:
+        container_name: tusredis
+        image: redis
+        ports:
+            - 6379
+    tusdb:
+        container_name: tusdb
+        image: postgres
+        ports:
+            - "5432:5432"
+        env_file: .env
+        volumes:
+            -   type: volume
+                source: dbdata
+                target: /var/lib/postgresql/data
+volumes:
+    tusweb:
+    webdata:
+    dbdata:

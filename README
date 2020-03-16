@@ -1,0 +1,10 @@
+README
+------
+1. In terminal run "docker-compose build"
+2. Copy .profile to User home ie "cp .profile ~"
+3. Enter tusweb container with cmd "goinside tusweb"
+4. cmd "cd /var/www/html"
+5. cmd "composer create-project symfony/website-skeleton tusweb"
+6. cmd "composer require symfony/orm-pack"
+7. cmd "composer require --dev symfony/maker-bundle"
+8. cmd "composer require doctrine/doctrine-bundle"
